@@ -25,7 +25,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:ems="10"
-        android:hint="name"
+        android:hint="Enter a number"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -35,7 +35,7 @@
         android:layout_height="55dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="16dp"
-        android:text="Add"
+        android:text="Insert"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.573"
         app:layout_constraintStart_toEndOf="@+id/newNumber"
