@@ -7,6 +7,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -33,12 +34,20 @@ public class MainActivity extends AppCompatActivity {
 
         addBtn.setOnClickListener(
                 v->{
-                    int timesNumber = Integer.parseInt(text.getText().toString());
-                    for(int i = 1; i <= 10; i++){
-                        listData.add(String.valueOf(i*timesNumber));
+                    String textValue = text.getText().toString();
+                    if(textValue.isEmpty()){
+                        Toast.makeText(this, "Please enter the number!", Toast.LENGTH_SHORT).show();
                     }
-                    adapter.notifyDataSetChanged();
+                    else {
+                        int timesNumber = Integer.parseInt(textValue);
+                        for (int i = 1; i <= 10; i++) {
+                            listData.add(String.valueOf(i * timesNumber));
+                        }
+                        adapter.notifyDataSetChanged();
+                    }
                 }
         );
+
+
     }
 }
