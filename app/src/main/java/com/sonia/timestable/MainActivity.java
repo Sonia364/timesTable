@@ -2,7 +2,10 @@ package com.sonia.timestable;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,9 +24,9 @@ public class MainActivity extends AppCompatActivity {
         EditText text = findViewById(R.id.newNumber);
         Button addBtn = findViewById(R.id.addBtn);
 
-        ArrayList<String> listData = new ArrayList<>();
+        ArrayList<Integer> listData = new ArrayList<>();
 
-        ArrayAdapter<String> adapter = new ArrayAdapter(
+        ArrayAdapter<Integer> adapter = new ArrayAdapter(
                 this,
                 android.R.layout.simple_list_item_1,
                 listData
@@ -31,6 +34,14 @@ public class MainActivity extends AppCompatActivity {
 
         ListView list = findViewById(R.id.listTest);
         list.setAdapter(adapter);
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                listData.remove(position);
+                adapter.notifyDataSetChanged();
+                Toast.makeText(MainActivity.this, "Item removed Successfully!", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         addBtn.setOnClickListener(
                 v->{
@@ -41,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
                     else {
                         int timesNumber = Integer.parseInt(textValue);
                         for (int i = 1; i <= 10; i++) {
-                            listData.add(String.valueOf(i * timesNumber));
+                            listData.add(i * timesNumber);
                         }
                         adapter.notifyDataSetChanged();
                     }
